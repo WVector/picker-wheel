@@ -1,0 +1,43 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'//添加
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        debug {
+//            buildConfigField "boolean", "LOG_DEBUG", rootProject.ext.debug
+        }
+        release {
+//            buildConfigField "boolean", "LOG_DEBUG", rootProject.ext.debug
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    provided "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
+    compile project(':picker-common')
+}
+//添加
+publish {
+    userOrg = 'qianwen'//bintray.com用户名
+    groupId = 'com.qianwen'//jcenter上的路径
+    artifactId = 'picker-wheel'//项目名称
+    publishVersion = '1.0.0'//版本号
+    desc = '选择器'
+    website = 'https://github.com/WVector/picker-wheel'
+}
