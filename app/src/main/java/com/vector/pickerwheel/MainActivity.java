@@ -36,6 +36,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        datePicker.show();
+        datePicker.show();
     }
 }
